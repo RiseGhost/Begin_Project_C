@@ -3,15 +3,14 @@
 
 //Função responsável por fazer a leitura do vetor e vereficar
 //os valores introduzidos:
-void readarray(int vetor[]){
-    for (int i = 0; i < N; i++){
-        do{
-            printf("%iº valor -> ", i + 1);
-            scanf("%i", &vetor[i]);
-            if (vetor[i] < -8 | vetor[i] > 40){
-                printf("O valor esta fora do intervalo pretendido\n");
-            }
-        } while (vetor[i] < -8 | vetor[i] > 40);
+void readarray(int vetor[], int n){
+    if (n > 0){
+        scanf("%iº valor -> ", &vetor[N - n]);
+        while (vetor[N - n] > 40 | vetor[N - n] < -8){
+            printf("O valor esta fora do intervalo pretendido\n");
+            scanf("%iº valor -> ", &vetor[N - n]);
+        }
+        readarray(vetor, n - 1);
     }
 }
 
@@ -48,11 +47,12 @@ void array4x14(int vetor[]){
 
 //Função responsável por fazer a ordenação de metade do vetor
 void ordenar(int vetor[]){
-    int aux = -10, vetoraux[N];
+    int aux = -99999, vetoraux[N];
     //Criação de um vetor auxiliar para não alterar o original
     for (int i = 0; i < N; i++){
         vetoraux[i] = vetor[i];
     }
+    //Calculo do vetor com a segunda metade em ordem crescente:
     for (int i = N/2; i < N; i++){
     int menor = 99999999;     
         for (int j = N/2; j < N; j++){
@@ -63,6 +63,7 @@ void ordenar(int vetor[]){
         vetoraux[i] = menor;
         aux = menor;
     }
+    //Impressão no ecrã do vetor com a segunda metade em ordem crescente:
     for (int i = 0; i < N; i++){
         printf("%i\n", vetoraux[i]);
     }
@@ -79,12 +80,13 @@ void menu(){
     printf("4 -> Construção de uma matriz 4 x 14, em que cada linha é o vetor lido.\n");
     printf("5 -> Cálculo da mediana dos elementos no vetor.\n");
     printf("6 -> Devolução do vetor, com a segunda metade dos valores ordenada por ordem crescente.\n");
+    printf("0 -> Sair\n");
 }
 
 int main(void){
     int soma[N/2], vetor[N], vetoraux[N],op;
     printf("Por favor indique 14 valores entre o intervalo -7 a 39\n");
-    readarray(vetor);
+    readarray(vetor, N);
     vetoraux[N] = vetor[N];
     do
     {
