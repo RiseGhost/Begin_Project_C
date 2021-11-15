@@ -5,10 +5,10 @@
 //os valores introduzidos:
 void readarray(int vetor[], int n){
     if (n > 0){
-        scanf("%iº valor -> ", &vetor[N - n]);
+        scanf("%i", &vetor[N - n]);
         while (vetor[N - n] > 40 | vetor[N - n] < -8){
             printf("O valor esta fora do intervalo pretendido\n");
-            scanf("%iº valor -> ", &vetor[N - n]);
+            scanf("%i", &vetor[N - n]);
         }
         readarray(vetor, n - 1);
     }
