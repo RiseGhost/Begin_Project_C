@@ -1,5 +1,5 @@
 #include<stdio.h>
-#define N 8
+#define N 8 //-> Número de elementos que seram lidos pelo vetor:
 
 //Função responsável por fazer a leitura do vetor e vereficar
 //os valores introduzidos:
@@ -49,6 +49,7 @@ void array4x14(int vetor[]){
 //Função responsável por fazer a ordenação de metade do vetor
 void ordenar(int vetor[]){
     int aux = -10, vetoraux[N];
+    //Criação de um vetor auxiliar para não alterar o original
     for (int i = 0; i < N; i++){
         vetoraux[i] = vetor[i];
     }
@@ -85,36 +86,39 @@ int main(void){
     printf("Por favor indique 14 valores entre o intervalo -7 a 39\n");
     readarray(vetor);
     vetoraux[N] = vetor[N];
-    menu();
-    scanf("%i", &op);
-    switch (op)
+    do
     {
-    case 1:
-        somaarray(vetor, soma);
-        printf("\nA soma da primeira metade do vetor com a segunda metade,\ndá origem ao seguinte vetor\n");
-        printf("soma = ");
-        for (int i = 0; i < N/2; i++){
-            printf(" %i |", soma[i]);
+        menu();
+        scanf("%i", &op);
+        switch (op)
+        {
+        case 1:
+            somaarray(vetor, soma);
+            printf("\nA soma da primeira metade do vetor com a segunda metade,\ndá origem ao seguinte vetor\n");
+            printf("soma = ");
+            for (int i = 0; i < N/2; i++){
+                printf(" %i |", soma[i]);
+            }
+            printf("\n");
+            break;
+        case 2:
+            printf("\nCubo da 1ª posição do vetor -> %i\n", cubo(vetor[0]));
+            printf("Cubo da ultima posição do vetor -> %i\n", cubo(vetor[N - 1]));
+            break;
+        case 3:
+            x3(vetor);
+            break;
+        case 4:
+            array4x14(vetor);
+            break;
+        case 5:
+            break;
+        case 6:
+            ordenar(vetor);
+            break;
+        default:
+            break;
         }
-        printf("\n");
-        break;
-    case 2:
-        printf("\nCubo da 1ª posição do vetor -> %i\n", cubo(vetor[0]));
-        printf("Cubo da ultima posição do vetor -> %i\n", cubo(vetor[N - 1]));
-        break;
-    case 3:
-        x3(vetor);
-        break;
-    case 4:
-        array4x14(vetor);
-        break;
-    case 5:
-        break;
-    case 6:
-        ordenar(vetor);
-        break;
-    default:
-        break;
-    }
+    }while (op != 0);    
     return 0;
 }
