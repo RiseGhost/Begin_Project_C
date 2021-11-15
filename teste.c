@@ -1,5 +1,5 @@
 #include<stdio.h>
-#define N 4
+#define N 8
 
 //Função responsável por fazer a leitura do vetor e vereficar
 //os valores introduzidos:
@@ -46,6 +46,27 @@ void array4x14(int vetor[]){
     }
 }
 
+//Função responsável por fazer a ordenação de metade do vetor
+void ordenar(int vetor[]){
+    int aux = -10, vetoraux[N];
+    for (int i = 0; i < N; i++){
+        vetoraux[i] = vetor[i];
+    }
+    for (int i = N/2; i < N; i++){
+    int menor = 99999999;     
+        for (int j = N/2; j < N; j++){
+            if (vetor[j] < menor & vetor[j] > aux){
+                menor = vetor[j];
+            }          
+        }
+        vetoraux[i] = menor;
+        aux = menor;
+    }
+    for (int i = 0; i < N; i++){
+        printf("%i\n", vetoraux[i]);
+    }
+}
+
 //Função responsável por mostrar o menu na tela:
 void menu(){
     printf("\n*************************************************************************************\n");
@@ -60,9 +81,10 @@ void menu(){
 }
 
 int main(void){
-    int soma[N/2], vetor[N], op;
+    int soma[N/2], vetor[N], vetoraux[N],op;
     printf("Por favor indique 14 valores entre o intervalo -7 a 39\n");
     readarray(vetor);
+    vetoraux[N] = vetor[N];
     menu();
     scanf("%i", &op);
     switch (op)
@@ -85,6 +107,11 @@ int main(void){
         break;
     case 4:
         array4x14(vetor);
+        break;
+    case 5:
+        break;
+    case 6:
+        ordenar(vetor);
         break;
     default:
         break;
